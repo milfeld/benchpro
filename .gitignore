@@ -1,2 +1,4 @@
 .validated
 settings.ini
+.history
+log/
