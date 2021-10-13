@@ -20,50 +20,21 @@ New applications are continuously being added.
 
 ## Getting Started
 
-The following steps will walk you through the basic usage of benchtool and produce a small LAMMPS LJ-melt benchmark. Tested on Stampede2 and Frontera systems at TACC. The initial site setup is not needed on TACC systems as the tool has already been deployed.
-
-### Site Install
-
-This section will install the BenchTool python package for use on the system - this step is not necessary on TACC systems.
-
-1.b Load system Python3
-``` 
-ml python3
-```
-
-1.b OR: Create Python3 virtual environment 
-```
-virtualenv -p python3 ~/benchenv
-source ~/benchenv/bin/activate
-```
-
-2 Download and install BenchTool package: 
-```
-git clone https://github.com/TACC/benchtool.git
-cd benchtool
-python3 setup.py install
-```
-
-The Python package is now installed, next you will need to run the BenchTool user install process, which will copy configuration files and setup directory structures. 
-
-### User Install
+### Install
 
 In order to use BenchTool you need to install a local copy of the configuration and template files for your user account. This process also creates the directory structure for building applications and running benchmarks.
 
-1. Load the BenchTool module, this adds the BenchTool Python package into the system Python3 and sets some environment variables.
+1. Load the BenchTool module, this adds the BenchTool Python package to PYTHONPATH and sets some environment variables.
 ```
+ml python3
 module use /scratch1/hpc_tools/benchtool/modulefiles
 ml benchtool
-```
-2. Run the install process that copies files to $USER/.benchtool and creates directories in $SCRATCH/benchtool. An optional settings file can be provided to modify these default installation paths. An example of this file can be found in $BT_SITE/package/src/data/install.ini
-```
-benchtool --install [--settings FILE]
-```
-Each time you install or update your local BenchTool installation, a validation process will automatically run to confirm that your system, environment and directory structure are correctly configured. You can run this manually
+
+2. Before you can use BenchTool you need to run a validation process to confirm that your system, environment and directory structures are correctly configured. Run this with:
 ```
 benchtool --validate
 ```
-Some of the hardware statistics collection functionality provided by BenchTool requires root access, you can either run the permissions script below to privilege the scripts, or live with the runtime warning.
+NOTE: Some the hardware statistics collection functionality provided by BenchTool requires root access, you can either run the permissions script below to privilege the scripts, or manage without this data collection.
 ```
 sudo -E $BT_HOME/resources/scripts/change_permissions.sh
 ```
@@ -72,7 +43,7 @@ sudo -E $BT_HOME/resources/scripts/change_permissions.sh
 benchtool --help
 benchtool --version
 ```
-4. Print useful behaviour defaults 
+4. Print useful setting defaults 
 ```
 benchtool --defaults
 ```
@@ -252,24 +223,34 @@ It may be helpful to build with `dry_run=True` initially to confirm the build sc
 
 ## Advanced Features
 
-BenchTool supports a number of more advanced features which may be of use.
+BenchTool supports a number of additional features which may be of use.
 
 ### Overloading parameters
 
 Useful for changing a setting for a onetime use. 
 Use `benchtool --setup` to confirm important default params from $BT_HOME/settings.ini
-You can overload params from settings.ini and params from  your build/bench config file.
-Accepts colon delimited lists.
-Exception will be raised if overload param does not match existing key in settings.ini or config file.
+You can overload any of the default parameters read from file with the `-o`/`--overload` flag. 
+Parameters are overloaded with a list of key-value pairs, or by provided a filename with overloads defined.
+An exception will be raised if a provided overload key does not match an existing parameter read from file.
 
 Example 1: overload dry_run and build locally rather than via sched:
 ```
-benchtool --build lammps --overload dry_run=False build_mode=local
+benchtool -b lammps --overload dry_run=False build_mode=local
 ```
 
 Example 2: run LAMMPS benchmark with modified nodes, ranks and threads:
 ```
-bench --bench ljmelt --overload nodes=16 ranks_per_node=8 threads=6
+benchtool -B ljmelt --overload nodes=16 ranks_per_node=8 threads=6
+```
+
+Example 3: run a collection of benchmarks across a range of hardware, allowing only 1 active task at a time:
+```
+vim layout.txt
+> nodes = 16,32,64
+> ranks_per_node=2
+> threads=28
+
+benchtool -B ljmelt gromacs_stmv new_conus12km --overload layout.txt max_running_jobs=1
 ```
 
 ### Input list support
