@@ -29,7 +29,7 @@ In order to use BenchTool you need to install a local copy of the configuration 
 ml python3
 module use /scratch1/hpc_tools/benchtool/modulefiles
 ml benchtool
-
+```
 2. Before you can use BenchTool you need to run a validation process to confirm that your system, environment and directory structures are correctly configured. Run this with:
 ```
 benchtool --validate
