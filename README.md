@@ -1,6 +1,5 @@
 # BenchTool
-This is a framework to automate and standardize application compilation, benchmarking and result collection on large scale HPC systems.
-There are several application profiles included with benchtool for debugging and testing:
+BenchTool is a framework to automate and standardize application compilation, benchmarking and result collection on large scale HPC systems. Current list of applications included with BenchTool:
 
 | Applications               | Synthetic Benchmarks     |
 |----------------------------|--------------------------|
@@ -15,22 +14,37 @@ There are several application profiles included with benchtool for debugging and
 | WRF 4.2                    |                          |
 | SpecFEM3D Globe 7.0.2      |                          |
 
-These application profiles have been created with the expectation that corresponding source code and datasets are available in the local repository directory.
-New applications are continuously being added.
+These application profiles have been created with the expectation that corresponding source code and datasets are available in the local repository directory which is the case for TACC systems. New applications are being added.
 
 ## Getting Started
 
 ### Install
 
-In order to use BenchTool you need to install a local copy of the configuration and template files for your user account. This process also creates the directory structure for building applications and running benchmarks.
+The BenchTool site package should already be installed on most TACC systems. If it is not, contact mcawood@tacc.utexas.edu or install it from the [benchtool-package](https://github.com/TACC/benchtool-package) repository. In order to use BenchTool you need to install a local copy of the configuration and template files for your user.
 
-1. Load the BenchTool module, this adds the BenchTool Python package to PYTHONPATH and sets some environment variables.
+
+| System             | Module Path     |
+|--------------------|--------------------------|
+| Frontera           | /scratch1/hpc_tools/benchtool/modulefiles |
+| Stampede2          | TBD                      |
+| Lonestar6          | TBD                      |
+| Longhorn           | TBD                      |
+
+
+1. Load the BenchTool site module using the appropriate system path above, this adds the BenchTool package to PYTHONPATH and sets some environment variables.
 ```
 ml python3
-module use /scratch1/hpc_tools/benchtool/modulefiles
+module use [module_path]
 ml benchtool
+
 ```
-2. Before you can use BenchTool you need to run a validation process to confirm that your system, environment and directory structures are correctly configured. Run this with:
+2. You will likely get a warning stating you need to install missing user files. Follow the instructions to clone those files from this repository:
+```
+ml git
+git clone https://github.com/TACC/benchtool.git $HOME/benchtool
+```
+
+3. Finally, you need to run a validation process to confirm that your system, environment and directory structures are correctly configured before using BenchTool for the first time. Run this with:
 ```
 benchtool --validate
 ```
@@ -450,11 +464,8 @@ These config files contain parameters used to populate the benchmark template sc
 
 | Directory         | Purpse                                                    |
 |-------------------|-----------------------------------------------------------|
-| $BT_HOME/auth            | SSH keys.                                                 |
 | $BT_APPS                 | Application build basedir.                                |
 | $BT_HOME/config          | config files containing template parameters.              |
-| $BT_HOME/dev             | Contains unit tests etc.                                  |
-| $BT_HOME/doc             | Contains Sphinx generated documentation. WIP              |
 | $BT_HOME/log             | Build, bench and catpure log files.                       |
 | $BT_HOME/resources       | Contains useful content including modulefiles, hardware collection and result validation scripts.    |
 | $BT_RESULTS              | Benchmark result basedir.                                 |
