@@ -30,18 +30,18 @@ The BenchTool site package should already be installed on most TACC systems. If 
 | Longhorn           | TBD                      |
 
 
-1. Load the BenchTool site package using the appropriate system path above, this module adds BenchTool to PYTHONPATH and sets up your environment.
+1 Load the BenchTool site package using the appropriate system path above, this module adds BenchTool to PYTHONPATH and sets up your environment.
 ```
 ml python3
 module use [module_path]
 ml benchtool
 ```
-2. You will likely get a warning stating you need to install missing user files. Follow the instructions to clone those files from this repository:
+2 You will likely get a warning stating you need to install missing user files. Follow the instructions to clone those files from this repository:
 ```
 ml git
 git clone https://github.com/TACC/benchtool.git $HOME/benchtool
 ```
-3. Finally, you need to run a validation process to confirm that your system, environment and directory structures are correctly configured before using BenchTool for the first time. Run this with:
+3 Finally, you need to run a validation process to confirm that your system, environment and directory structures are correctly configured before using BenchTool for the first time. Run this with:
 ```
 benchtool --validate
 ```
@@ -49,27 +49,27 @@ NOTE: Some of the hardware data collection functionality provided by BenchTool r
 ```
 sudo -E $BT_HOME/resources/scripts/change_permissions.sh
 ```
-3. Print help & version information:
+4 Print help & version information:
 ```
 benchtool --help
 benchtool --version
 ```
-4. Display some useful defaults 
+5 Display some useful defaults 
 ```
 benchtool --defaults
 ```
 ### Build an Application
 This section will walk you through building your first application with BenchTool using an included application profile.
 
-1. List all available applications and benchmarks with:
+1 List all available applications and benchmarks with:
 ```
 benchtool -a
 ```
-2. Install LAMMPS:
+2 Install LAMMPS:
 ```
 benchtool -b lammps
 ```
-3. List applications currently installed:
+3 List applications currently installed:
 ```
 benchtool -la
 ```
@@ -78,15 +78,15 @@ You will see that LAMMPS is labelled as `DRY RUN` because `dry_run=True` in `$BT
 benchtool -qa lammps
 ```
 You can examine the build script `build.batch` located in the `build_prefix` directory. Submit your LAMMPS compilation script to the scheduler manually, or
-4. Remove the dry_run build:
+4 Remove the dry_run build:
 ```
 benchtool -da lammps
 ```
-5. Overload the default 'dry_run' value and rebuild LAMMPS with: 
+5 Overload the default 'dry_run' value and rebuild LAMMPS with: 
 ```
 benchtool -b lammps -o dry_run=False
 ```
-6. Now check the details and status of your LAMMPS compilation job with:
+6 Now check the details and status of your LAMMPS compilation job with:
 ```
 benchtool -qa lammps
 ```
@@ -96,22 +96,22 @@ In this example, parameters in `$BT_HOME/config/build/lammps.cfg` were used to c
 
 We can now run a benchmark with our LAMMPS installation. There is no need to wait for the LAMMPS build job to complete because BenchTool is able create job dependencies between tasks when needed. In fact, if `build_if_missing=True` in `$BT_HOME/settings.ini`, BenchTool would detect that LAMMPS is not installed for the current system when attempting to run a benchmark and build it automatically without us doing the steps above. The process to run a benchmark is similar to compilation; a configation file is used to populate a template script. A benchmark run is specified with `--bench / -B`. The argument may be a single benchmark label, or a benchmark 'suite' (i.e collection of benchmarks) defined in `settings.ini`. Once again you can check for available benchmarks with `--avail / -a`.  
 
-1. If you haven't already, modify `$BT_HOME/settings.ini' to disable the dry_run mode.
+1 If you haven't already, modify `$BT_HOME/settings.ini' to disable the dry_run mode.
 ```
 dry_run = False
 ```
-2. Generate the LAMMPS Lennard-Jones benchmark with: 
+2 Generate the LAMMPS Lennard-Jones benchmark with: 
 ```
 benchtool -B ljmelt 
 ```
 We changed `settings.ini` so we don't need to use the `--overload / -o` flag to disable the dry_run mode. 
 Note that BenchTool will use the default scheduler parameters for your system from a file defined in `$BT_HOME/config/system.cfg`. You can overload individual parameters using `--overload`, or use another scheduler config file with the flag `--sched [FILENAME]`. 
 
-3. Check the benchmark report with:
+3 Check the benchmark report with:
 ```
 benchtool -qr ljmelt
 ```
-4. Because this Lennard-Jones benchmark was the last BenchTool job executed, a useful shortcut is available to check this report:
+4 Because this Lennard-Jones benchmark was the last BenchTool job executed, a useful shortcut is available to check this report:
 ```
 benchtool --last
 ```
