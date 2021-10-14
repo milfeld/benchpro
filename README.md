@@ -20,7 +20,11 @@ These application profiles have been created with the expectation that correspon
 
 ### Install
 
+<<<<<<< HEAD
 The BenchTool site package should already be installed on most TACC systems. If it is not, contact mcawood@tacc.utexas.edu or install it from the [benchtool-package](https://github.com/TACC/benchtool-package) repository. In order to use BenchTool you need to install a local copy of the configuration and template files for your user.
+=======
+In order to use BenchTool you need to install a local copy of the configuration and template files for your user account. This process also creates the directory structure for building applications and running benchmarks. By default the user files are installed into $HOME/benchtool and referenced with the $BT_HOME environment variable within the BenchTool module. The application and result working directories are $SCRATCH/apps and $SCRATCH/results and referenced with $BT_APPS and $BT_RESULTS respectively. These paths and variables can be changed as needed.
+>>>>>>> 5dd155d48ac5cbe0fec4e1b24c6bfbd47c45a6cd
 
 
 | System             | Module Path     |
