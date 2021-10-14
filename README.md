@@ -20,11 +20,7 @@ These application profiles have been created with the expectation that correspon
 
 ### Install
 
-<<<<<<< HEAD
 The BenchTool site package should already be installed on most TACC systems. If it is not, contact mcawood@tacc.utexas.edu or install it from the [benchtool-package](https://github.com/TACC/benchtool-package) repository. In order to use BenchTool you need to install a local copy of the configuration and template files for your user.
-=======
-In order to use BenchTool you need to install a local copy of the configuration and template files for your user account. This process also creates the directory structure for building applications and running benchmarks. By default the user files are installed into $HOME/benchtool and referenced with the $BT_HOME environment variable within the BenchTool module. The application and result working directories are $SCRATCH/apps and $SCRATCH/results and referenced with $BT_APPS and $BT_RESULTS respectively. These paths and variables can be changed as needed.
->>>>>>> 5dd155d48ac5cbe0fec4e1b24c6bfbd47c45a6cd
 
 
 | System             | Module Path     |
@@ -35,43 +31,42 @@ In order to use BenchTool you need to install a local copy of the configuration 
 | Longhorn           | TBD                      |
 
 
-1. Load the BenchTool site module using the appropriate system path above, this adds the BenchTool package to PYTHONPATH and sets some environment variables.
+1. Load the BenchTool site package using the appropriate system path above, this module adds BenchTool to PYTHONPATH and sets up your environment.
 ```
 ml python3
 module use [module_path]
 ml benchtool
-
 ```
 2. You will likely get a warning stating you need to install missing user files. Follow the instructions to clone those files from this repository:
 ```
 ml git
 git clone https://github.com/TACC/benchtool.git $HOME/benchtool
 ```
-
 3. Finally, you need to run a validation process to confirm that your system, environment and directory structures are correctly configured before using BenchTool for the first time. Run this with:
 ```
 benchtool --validate
 ```
-NOTE: Some the hardware statistics collection functionality provided by BenchTool requires root access, you can either run the permissions script below to privilege the scripts, or manage without this data collection.
+NOTE: Some the hardware data collection functionality provided by BenchTool requires root access, you can either run the permissions script below to privilege the scripts, or manage without this data collection feature.
 ```
 sudo -E $BT_HOME/resources/scripts/change_permissions.sh
 ```
-3. Print help & version info:
+3. Print help & version information:
 ```
 benchtool --help
 benchtool --version
 ```
-4. Print useful setting defaults 
+4. Display some useful defaults 
 ```
 benchtool --defaults
 ```
-
 ### Build an Application
+This section will walk you through building your first application with BenchTool using an included application profile.
+
 1. List all available applications and benchmarks with:
 ```
 benchtool -a
 ```
-2. Install the LAMMPS application (LAMMPS builds and runs quickly):
+2. Install LAMMPS:
 ```
 benchtool -b lammps
 ```
@@ -79,20 +74,24 @@ benchtool -b lammps
 ```
 benchtool -la
 ```
-NOTE: By default `dry_run=True` in `$BT_HOME/settings.ini`, so the LAMMPS build script was created but not submitted to the scheduler. You can now submit your LAMMPS build job manually, or
+You will see that LAMMPS is labelled as `DRY RUN` because `dry_run=True` in `$BT_HOME/settings.ini` by default. Therefore BenchTool generated a LAMMPS compilation script but did not submit it to the scheduler to execute the build process. You can obtain more information about your LAMMPS deployment with:
+```
+benchtool -qa lammps
+```
+You can examine the build script `build.batch` located in the `build_prefix` directory. Submit your LAMMPS compilation script to the scheduler manually, or
 4. Remove the dry_run build:
 ```
 benchtool -da lammps
 ```
-5. Overload the default 'dry_run' and re-build with: 
+5. Overload the default 'dry_run' value and rebuild LAMMPS with: 
 ```
 benchtool -b lammps -o dry_run=False
 ```
-6. Check the details and status of your LAMMPS build with:
+6. Now check the details and status of your LAMMPS compilation job with:
 ```
 benchtool -qa lammps
 ```
-In this example, parameters in `$BT_HOME/config/build/lammps.cfg` were used to populate the build template `$BT_HOME/templates/build/lammps.template` and produce a job script  which was submitted to the scheduler. You can review the populated job script located in the `build_prefix` directory and named `build.batch`. Parameters for the job, system architecure, compile time optimizations and a module file were automatically generated. For each application that is built, a 'build_report' is generated in order to preserve metadata about the application. This build report is referenced whenever the application is used to run a benchmark, and also when this application is captured to the database. You can manually examine this report in the application directory or using the `--queryApp / -qa` flag.
+In this example, parameters in `$BT_HOME/config/build/lammps.cfg` were used to contextualize the build template `$BT_HOME/templates/build/lammps.template` and produce a job script. Parameters for the job, system architecure, compile time optimizations and a module file were automatically generated. You can load your LAMMPS module with `ml lammps`. For each application that is built, a 'build_report' is generated in order to preserve metadata about the application. This build report is referenced whenever the application is used to run a benchmark, and also when this application is captured to the database. You can manually examine this report in the application directory or by using the `--queryApp / -qa` flag.
 
 ### Run a Benchmark
 
