@@ -22,7 +22,7 @@ New applications are continuously being added.
 
 ### Install
 
-In order to use BenchTool you need to install a local copy of the configuration and template files for your user account. This process also creates the directory structure for building applications and running benchmarks.
+In order to use BenchTool you need to install a local copy of the configuration and template files for your user account. This process also creates the directory structure for building applications and running benchmarks. By default the user files are installed into $HOME/benchtool and referenced with the $BT_HOME environment variable within the BenchTool module. The application and result working directories are $SCRATCH/apps and $SCRATCH/results and referenced with $BT_APPS and $BT_RESULTS respectively. These paths and variables can be changed as needed.
 
 1. Load the BenchTool module, this adds the BenchTool Python package to PYTHONPATH and sets some environment variables.
 ```
