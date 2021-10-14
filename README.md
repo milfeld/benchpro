@@ -20,8 +20,7 @@ These application profiles have been created with the expectation that correspon
 
 ### Install
 
-The BenchTool site package should already be installed on most TACC systems. If it is not, contact mcawood@tacc.utexas.edu or install it from the [benchtool-package](https://github.com/TACC/benchtool-package) repository. In order to use BenchTool you need to install a local copy of the configuration and template files for your user.
-
+The BenchTool site package should already be installed on most TACC systems. If it is not, contact mcawood@tacc.utexas.edu or install it from the [benchtool-package](https://github.com/TACC/benchtool-package) repository. Assuming the site package is available, you need to install a local copy of the configuration and template files to use BenchTool.
 
 | System             | Module Path     |
 |--------------------|--------------------------|
@@ -46,7 +45,7 @@ git clone https://github.com/TACC/benchtool.git $HOME/benchtool
 ```
 benchtool --validate
 ```
-NOTE: Some the hardware data collection functionality provided by BenchTool requires root access, you can either run the permissions script below to privilege the scripts, or manage without this data collection feature.
+NOTE: Some of the hardware data collection functionality provided by BenchTool requires root access, you can either run the permissions script below to privilege said scripts, or manage without this data collection feature.
 ```
 sudo -E $BT_HOME/resources/scripts/change_permissions.sh
 ```
@@ -91,33 +90,33 @@ benchtool -b lammps -o dry_run=False
 ```
 benchtool -qa lammps
 ```
-In this example, parameters in `$BT_HOME/config/build/lammps.cfg` were used to contextualize the build template `$BT_HOME/templates/build/lammps.template` and produce a job script. Parameters for the job, system architecure, compile time optimizations and a module file were automatically generated. You can load your LAMMPS module with `ml lammps`. For each application that is built, a 'build_report' is generated in order to preserve metadata about the application. This build report is referenced whenever the application is used to run a benchmark, and also when this application is captured to the database. You can manually examine this report in the application directory or by using the `--queryApp / -qa` flag.
+In this example, parameters in `$BT_HOME/config/build/lammps.cfg` were used to contextualize the build template `$BT_HOME/templates/build/lammps.template` and produce a job script. Parameters for the job, system architecture, compile time optimizations and a module file were automatically generated. You can load your LAMMPS module with `ml lammps`. For each application that is built, a 'build_report' is generated in order to preserve metadata about the application. This build report is referenced whenever the application is used to run a benchmark, and also when this application is captured to the database. You can manually examine this report in the application directory or by using the `--queryApp / -qa` flag.
 
 ### Run a Benchmark
 
-We can now proceed with running a benchmark with our LAMMPS installation. There is no need to wait for the LAMMPS build job to complete, BenchTool knows to check the build status and create a job dependency if needed. In fact if `build_if_missing=True` in `$BT_HOME/settings.ini`, BenchTool would have automatically detected LAMMPS was not installed and built it for the current system without us needing to do the steps above. The process to run a benchmark is similar to building; a config file is used to populate a template script. A benchmark run is specified with `--bench / -B`. The argument may be a single benchmark label, or a benchmark 'suite' (i.e collection of benchmarks) defined in `settings.ini`. Once again you can check for available benchmarks with `--avail / -a`.  
+We can now run a benchmark with our LAMMPS installation. There is no need to wait for the LAMMPS build job to complete because BenchTool is able create job dependencies between tasks when needed. In fact, if `build_if_missing=True` in `$BT_HOME/settings.ini`, BenchTool would detect that LAMMPS is not installed for the current system when attempting to run a benchmark and build it automatically without us doing the steps above. The process to run a benchmark is similar to compilation; a configation file is used to populate a template script. A benchmark run is specified with `--bench / -B`. The argument may be a single benchmark label, or a benchmark 'suite' (i.e collection of benchmarks) defined in `settings.ini`. Once again you can check for available benchmarks with `--avail / -a`.  
 
-1. Modify `$BT_HOME/settings.ini`
+1. If you haven't already, modify `$BT_HOME/settings.ini' to disable the dry_run mode.
 ```
 dry_run = False
 ```
-2. Run the LAMMPS LJ-melt benchmark with: 
+2. Generate the LAMMPS Lennard-Jones benchmark with: 
 ```
 benchtool -B ljmelt 
 ```
-We changed `settings.ini` so we don't need to use the `--overload / -o` flag anymore. 
-It is important to note that BenchTool will use the default scheduler parameters for your system from a file defined in `config/system.cfg`. You can overload individual parameters using `--overload`, or use another scheduler config file with the flag `--sched [FILENAME]`. 
+We changed `settings.ini` so we don't need to use the `--overload / -o` flag to disable the dry_run mode. 
+Note that BenchTool will use the default scheduler parameters for your system from a file defined in `$BT_HOME/config/system.cfg`. You can overload individual parameters using `--overload`, or use another scheduler config file with the flag `--sched [FILENAME]`. 
 
 3. Check the benchmark report with:
 ```
 benchtool -qr ljmelt
 ```
-4. Because this LAMMPS LJ-Melt benchmark was the last BenchTool job executed, a useful shortcut to check this report is:
+4. Because this Lennard-Jones benchmark was the last BenchTool job executed, a useful shortcut is available to check this report:
 ```
 benchtool --last
 ```
 
-In this example, parameters in `$BT_HOME/config/bench/lammps_ljmelt.cfg` were used to populate the template `$BT_HOME/templates/bench/lammps.template`
+In this example, parameters in `$BT_HOME/config/bench/lammps_ljmelt.cfg` were used to contetualize the template `$BT_HOME/templates/bench/lammps.template`
 Much like the build process, a 'bench_report' was generated to store metadata associated with this benchmark run. It is stored in the benchmark result direcotry and will be used in the next step to capture the result to the database.
 
 ### Capture Benchmark Result
@@ -139,7 +138,7 @@ benchtool --dbResult
 ```
 benchtool --dbResult username=$USER:system=$TACC_SYSTEM:submit_time=$(date +"%Y-%m-%d") --export
 ```
-Because your LAMMPS application was recently compiled and not present in the database, it would have been automatically added.
+Because your LAMMPS application was recently compiled and not present in the database, it was also added automatically.
 
 5 Query your application details using the [APPID] from above:
 ```
@@ -152,7 +151,7 @@ benchtool --delResult captured
 
 ### Web frontend
 
-The captured applications and benchmark results are available through a Django frontend, which is currently running on tacc-stats03 port 8001. 
+The captured applications and benchmark results are available through a web frontend here http://tacc-stats03.tacc.utexas.edu/. 
 
 ### Useful commands
 
