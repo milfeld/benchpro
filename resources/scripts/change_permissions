@@ -5,9 +5,9 @@ then
     exit 1
 fi
 
-if [ -z "$BT_HOME" ]
+if [ -z "$BP_HOME" ]
 then
-    echo "\$BT_HOME not set, load benchtool module."
+    echo "\$BP_HOME not set, load benchpro module."
     exit 1
 fi
 
@@ -18,7 +18,7 @@ declare -a exe=("ibnetdiscover"
 		"TACC_HWP_set"
 				)
 
-path=$BT_HOME/resources/hw_utils
+path=$BP_HOME/resources/hw_utils
 
 for i in "${exe[@]}"
 do
