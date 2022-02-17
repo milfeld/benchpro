@@ -1,5 +1,5 @@
 # BenchPRO
-BenchPRO is a framework to automate and standardize application compilation, benchmarking and result collection on large scale HPC systems. Current list of applications included with BenchPRO:
+BenchPRO - Benchmark Performance & Reproducibility Orchestrator, is a framework to automate and standardize application compilation, benchmarking and result collection on large scale HPC systems. Current list of applications included with BenchPRO:
 
 | Applications               | Synthetic Benchmarks     |
 |----------------------------|--------------------------|
