@@ -33,7 +33,7 @@ The BenchPRO site package should already be installed on most TACC systems. If i
 1 Load the BenchPRO site package using the appropriate system path above, this module adds BenchPRO to PYTHONPATH and sets up your environment.
 ```
 ml python3
-module use [module_path]
+ml use [module_path]
 ml benchpro
 ```
 2 You will likely get a warning stating you need to install missing user files. Follow the instructions to clone those files from this repository:
