@@ -151,7 +151,7 @@ benchpro --delResult captured
 
 ### Web frontend
 
-The captured applications and benchmark results are available through a web frontend here http://tacc-stats03.tacc.utexas.edu/. 
+The captured applications and benchmark results are available through a web frontend here http://benchpro.tacc.utexas.edu/. 
 
 ### Useful commands
 
