@@ -14,9 +14,9 @@ Contents
 
 .. toctree::
     
-   quickstart
-   setup
-   usage
-   adding_new
-   advanced
-   reference
+   Quick Start <quickstart>
+   Setup <setup>
+   General Usage <usage>
+   Adding New Applications and Benchmarks <adding_new>
+   Advanced Features <advanced>
+   Naming Reference <reference>
