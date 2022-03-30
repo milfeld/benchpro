@@ -13,10 +13,12 @@ Contents
 --------
 
 .. toctree::
-    
-   Quick Start <quickstart>
-   Setup <setup>
-   General Usage <usage>
-   Adding New Applications and Benchmarks <adding_new>
-   Advanced Features <advanced>
-   Naming Reference <reference>
+    :maxdepth: 2
+
+    overview
+    Quick Start <quickstart>
+    Setup <setup>
+    General Usage <usage>
+    Adding New Applications and Benchmarks <adding_new>
+    Advanced Features <advanced>
+    Naming Reference <reference>
