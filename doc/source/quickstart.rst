@@ -1,6 +1,6 @@
-========
+============
 Quick Start
-========
+============
 
 Install
 ============
@@ -9,50 +9,50 @@ The BenchPRO site package should already be installed on most TACC systems. If i
 
 .. _benchpro-package: https://github.com/TACC/benchpro-package
 
-.. list-table:: 
-* - System         
-  - Module Path     
-* - Frontera       
-  - /scratch1/hpc_tools/benchpro/modulefiles 
-* - Stampede2
-  - /scratch/hpc_tools/benchpro/modulefiles             
-* - Lonestar6      
-  - /scratch/projects/benchtool/modulefiles             
-* - Longhorn
-  - TBD             
+.. list-table:: Project Path 
+  * - System         
+    - Module Path     
+  * - Frontera       
+    - /scratch1/hpc_tools/benchpro/modulefiles 
+  * - Stampede2
+    - /scratch/hpc_tools/benchpro/modulefiles             
+  * - Lonestar6      
+    - /scratch/projects/benchtool/modulefiles             
+  * - Longhorn
+    - TBD             
 
 #. Load the BenchPRO site package using the appropriate system path above, this module adds BenchPRO to PYTHONPATH and sets up your environment.
 
-.. code-block:: bash
+.. code-block::
     ml python3
     ml use [module_path]
     ml benchpro
 
 #. You will likely get a warning stating you need to install missing user files. Follow the instructions to clone those files from this repository:
 
-.. code-block:: bash
+.. code-block::
     ml git
     git clone https://github.com/TACC/benchpro.git $HOME/benchpro
 
 #. Finally, you need to run a validation process to confirm that your system, environment and directory structures are correctly configured before using BenchPRO for the first time. Run this with:
 
-.. code-block:: bash
+.. code-block::
     benchpro --validate
 
 NOTE: Some of the hardware data collection functionality provided by BenchPRO requires root access, you can either run the permissions script below to privilege said scripts, or manage without this data collection feature.
 
-.. code-block:: bash
+.. code-block::
     sudo -E $BP_HOME/resources/scripts/change_permissions.sh
 
 #. Print help & version information:
 
-.. code-block:: bash
+.. code-block::
     benchpro --help
     benchpro --version
 
 #. Display some useful defaults 
 
-.. code-block:: bash
+.. code-block::
     benchpro --defaults
 
 
@@ -62,38 +62,38 @@ Build an Application
 This section will walk you through building your first application with BenchPRO using an included application profile.
 
 1. List all available applications and benchmarks with:
-.. code-block:: bash
+.. code-block::
     benchpro -a
 
 #. Install LAMMPS:
 
-.. code-block:: bash
+.. code-block::
     benchpro -b lammps
 
 #. List applications currently installed:
 
-.. code-block:: bash
+.. code-block::
     benchpro -la
 
 You will see that LAMMPS is labelled as `DRY RUN` because `dry_run=True` in `$BP_HOME/settings.ini` by default. Therefore BenchPRO generated a LAMMPS compilation script but did not submit it to the scheduler to execute the build process. You can obtain more information about your LAMMPS deployment with:
 
-.. code-block:: bash
+.. code-block::
     benchpro -qa lammps     
 
 You can examine the build script `build.batch` located in the `build_prefix` directory. Submit your LAMMPS compilation script to the scheduler manually, or
 #. Remove the dry_run build:
 
-.. code-block:: bash
+.. code-block::
     benchpro -da lammps
 
 #. Overload the default 'dry_run' value and rebuild LAMMPS with: 
 
-.. code-block:: bash
+.. code-block::
     benchpro -b lammps o dry_run=False
 
 #. Now check the details and status of your LAMMPS compilation job with:
 
-.. code-block:: bash
+.. code-block::
     benchpro -qa lammps
 
 In this example, parameters in `$BP_HOME/config/build/lammps.cfg` were used to contextualize the build template `$BP_HOME/templates/build/lammps.template` and produce a job script. Parameters for the job, system architecture, compile time optimizations and a module file were automatically generated. You can load your LAMMPS module with `ml lammps`. For each application that is built, a 'build_report' is generated in order to preserve metadata about the application. This build report is referenced whenever the application is used to run a benchmark, and also when this application is captured to the database. You can manually examine this report in the application directory or by using the `--queryApp / -qa` flag.
@@ -106,12 +106,12 @@ We can now run a benchmark with our LAMMPS installation. There is no need to wai
 
 1. If you haven't already, modify '$BP_HOME/settings.ini' to disable the dry_run mode.
 
-.. code-block:: bash
+.. code-block::
     dry_run = False
 
 #. Generate the LAMMPS Lennard-Jones benchmark with: 
 
-.. code-block:: bash
+.. code-block::
     benchpro -B ljmelt 
 
 We changed `settings.ini` so we don't need to use the `--overload / -o` flag to disable the dry_run mode. 
@@ -119,12 +119,12 @@ Note that BenchPRO will use the default scheduler parameters for your system fro
 
 #. Check the benchmark report with:
 
-.. code-block:: bash
+.. code-block::
     benchpro -qr ljmelt
 
 #. Because this Lennard-Jones benchmark was the last BenchPRO job executed, a useful shortcut is available to check this report:
 
-.. code-block:: bash
+.. code-block::
     benchpro --last
 
 
@@ -137,34 +137,34 @@ A benchmark result exists in four states, during scheduler queueing and executio
 
 1. We can check on the status of all benchmark runs with:
 
-.. code-block:: bash
-benchpro -lr 
+.. code-block::
+    benchpro -lr 
 
 #. Once your LAMMPS benchmark result is in the complete state, capture all complete results to the database with:
 
-.. code-block:: bash
+.. code-block::
     benchpro -C
 
 #. You can now query your result in the database with :
 
-.. code-block:: bash
+.. code-block::
     benchpro --dbResult 
 
 #. You can provide search criteria to narrow the results and export these results to a .csv file with:
 
-.. code-block:: bash
+.. code-block::
     benchpro --dbResult username=$USER system=$TACC_SYSTEM submit_time=$(date +"%Y-%m-%d") --export
 
 Because your LAMMPS application was recently compiled and not present in the database, it was also added automatically.
 
 #. Query your application details using the [APPID] from above:
 
-.. code-block:: bash
+.. code-block::
     benchpro --dbApp [APPID]
 
 #. Once you are satisfied the benchmark result and its associated files have been uploaded to the database, you can remove the local copy with:
 
-.. code-block:: bash
+.. code-block::
     benchpro --delResult captured
 
 
@@ -178,22 +178,22 @@ Useful commands
 
 You can print the default values of several important parameters with:
 
-.. code-block:: bash
+.. code-block::
     benchpro --setup
 
 
 It may be useful to review your previous BenchPRO commands, do this with:
 
-.. code-block:: bash
+.. code-block::
     benchpro --history
 
 You can remove tmp, log, csv, and history files by running:
 
-.. code-block:: bash
+.. code-block::
     benchpro --clean
 
 clean will NOT remove your all installed applications, to do that run:
 
-.. code-block:: bash
+.. code-block::
     benchpro --delApp all
 
