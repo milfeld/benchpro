@@ -9,14 +9,14 @@ The BenchPRO site package should already be installed on most TACC systems. If i
 
 .. _benchpro-package: https://github.com/TACC/benchpro-package
 
-  =====                =====
- System              Module Path     
-  =====                =====
- Frontera            /scratch1/hpc_tools/benchpro/modulefiles 
- Stampede2           /scratch/hpc_tools/benchpro/modulefiles             
- Lonestar6           /scratch/projects/benchtool/modulefiles             
- Longhorn            TBD             
- =====                 =====
+=====           =====
+ System         Module Path     
+=====           =====
+ Frontera       /scratch1/hpc_tools/benchpro/modulefiles 
+ Stampede2      /scratch/hpc_tools/benchpro/modulefiles             
+ Lonestar6      /scratch/projects/benchtool/modulefiles             
+ Longhorn       TBD             
+=====           =====
 
 #. Load the BenchPRO site package using the appropriate system path above, this module adds BenchPRO to PYTHONPATH and sets up your environment.
 
