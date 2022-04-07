@@ -3,7 +3,7 @@ Quick Start
 ========
 
 Install
-========
+============
 
 The BenchPRO site package should already be installed on most TACC systems. If it is not, contact ``mcawood@tacc.utexas.edu`` or install it from the benchpro-package_ repository. Assuming the site package is available, you need to install a local copy of the configuration and template files to use BenchPRO.
 

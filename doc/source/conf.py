@@ -7,7 +7,7 @@ copyright = '2022, Cawood'
 author = 'Matthew Cawood'
 
 release = '1.3'
-version = '1.3.2'
+version = '1.3.5'
 
 # -- General configuration
 
