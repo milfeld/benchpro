@@ -13,12 +13,10 @@ Contents
 --------
 
 .. toctree::
-    :maxdepth: 2
+    quickstart
 
 ..
     overview
-
-    Quick Start <quickstart>
 
 ..
     Setup <setup>
