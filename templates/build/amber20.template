@@ -2,6 +2,12 @@ cd amber${version}_src
 
 export AMBERHOME=`pwd`
 
+
+AMBERBUILDFLAGS=''
+if [[ "${ipo}" == "no" ]]; then
+  AMBERBUILDFLAGS='-no-ip -no-ipo'
+fi
+
 # Grab updates
 ./update_amber --update
 
@@ -39,13 +45,13 @@ sed -i '1388i\          foptflags="$foptflags -mtune=native"' AmberTools/src/con
 # Build serial
 echo "n" | ./configure -noX11 --skip-python -nofftw3 ${config_comp}
 source amber.sh
-make -j${threads} install
+make -j${threads} AMBERBUILDFLAGS=$AMBERBUILDFLAGS install
 
 # Build MPI
 if [ ! -z ${mpi} ]; then
   echo "n" | ./configure -noX11 --skip-python -nofftw3 ${config_mpi} ${config_comp}
   source amber.sh
-  make -j${threads} install
+  make -j${threads} AMBERBUILDFLAGS=$AMBERBUILDFLAGS install
 fi
 
 # Build CUDA + MPI
@@ -53,7 +59,7 @@ if [ ! -z ${mpi} ] && [ ! -z ${cuda} ]; then
   export CUDA_HOME=$TACC_CUDA_DIR
   echo "n" | ./configure -noX11 --skip-python -nofftw3 -cuda ${config_mpi} ${config_comp}
   source amber.sh
-  make -j${threads} install
+  make -j${threads} AMBERBUILDFLAGS=$AMBERBUILDFLAGS install
 fi
 
 mkdir -p ${install_path}
