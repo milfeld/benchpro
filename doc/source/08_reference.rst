@@ -1,5 +1,10 @@
-Format Reference
-===
+File Format Reference
+---------------------
+
+This page provides a reference to the various input and file structure provided by BenchPRO.
+
+Input Arguments 
+_______________
 
 
 | Argument                                              | Description                                                   |
@@ -22,7 +27,9 @@ Format Reference
 | --delResult [all/captured/failed/LABEL]               | Remove local benchmark results matching input criteria.       |
 | --overload [LIST]                                     | Replace options in settings.ini or any config file, acceptes a colon delimited list. |
 
-## Global settings
+Global settings
+_______________
+
 Global settings are defined in the file `settings.ini`
 
 | Label             | Default                       | Description                                                                       |
@@ -103,7 +110,9 @@ Global settings are defined in the file `settings.ini`
 | **[suites]**      |                               |                                                                                   |
 | [Suite label]     | [list of apps/benchmarks]     | Several example included for 
 
-## Application config files
+Application config files
+________________________
+
 These config files contain parameters used to populate the application build template file, config files are broken in sections corresponding to general settings, system modules and configuration parameters.
 
 | Label             | Required? | Description                                                                      |
@@ -125,7 +134,9 @@ These config files contain parameters used to populate the application build tem
 | exe               | Y         | Name of application executable, used to check compilation was successful.        |
 | collect_hw_stats  | N         | Runs the hardware stats collection tool after build.                             |
 
-## Benchmark config file
+Benchmark config file
+________________________
+
 These config files contain parameters used to populate the benchmark template script. The file structure is:
 
 | Label                 | Required?  | Description                                                                      |
@@ -155,7 +166,8 @@ These config files contain parameters used to populate the benchmark template sc
 | unit                  | Y          | Result units.                                                                    |
 
 
-## Directory structure
+Directory structure
+___________________
 
 | Directory         | Purpse                                                    |
 |-------------------|-----------------------------------------------------------|
