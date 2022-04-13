@@ -1,10 +1,13 @@
+=====================
 File Format Reference
----------------------
+=====================
 
 This page provides a reference to the various input and file structure provided by BenchPRO.
 
+.. _arguments:
+
 Input Arguments 
-_______________
+---------------
 
 .. list-table::
     :header-rows: 1
@@ -46,10 +49,11 @@ _______________
     *   - --overload [LIST]                                     
         - Replace options in settings.ini or any config file, acceptes a colon delimited list. 
 
-Global settings
-_______________
 
-Global settings are defined in the file `settings.ini`
+Global settings
+---------------
+
+Global settings are defined in the file :code:`$BP_HOME/settings.ini`
 
 .. list-table::
        :header-rows: 1
@@ -141,7 +145,7 @@ Global settings are defined in the file `settings.ini`
 | [Suite label]     | [list of apps/benchmarks]     | Several example included for 
 
 Application config files
-________________________
+------------------------
 
 These config files contain parameters used to populate the application build template file, config files are broken in sections corresponding to general settings, system modules and configuration parameters.
 
@@ -165,7 +169,7 @@ These config files contain parameters used to populate the application build tem
 | collect_hw_stats  | N         | Runs the hardware stats collection tool after build.                             |
 
 Benchmark config file
-________________________
+---------------------
 
 These config files contain parameters used to populate the benchmark template script. The file structure is:
 
@@ -195,9 +199,12 @@ These config files contain parameters used to populate the benchmark template sc
 | script                | Depends    | Required if 'method=script'. Filename of script for result extraction.           |
 | unit                  | Y          | Result units.                                                                    |
 
+Environment Variables
+---------------------
+
 
 Directory structure
-___________________
+-------------------
 
 | Directory         | Purpse                                                    |
 |-------------------|-----------------------------------------------------------|
@@ -207,3 +214,14 @@ ___________________
 | $BP_HOME/resources       | Contains useful content including modulefiles, hardware collection and result validation scripts.    |
 | $BP_RESULTS              | Benchmark result basedir.                                 |
 | $BP_HOME/templates       | job template files                                        |
+
+
+===================
+Database Structures
+===================
+
+Application database
+--------------------
+
+Results database
+----------------

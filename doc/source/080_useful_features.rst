@@ -1,10 +1,11 @@
+=================
 Advanced Features
------------------
+=================
 
 BenchPRO supports a number of additional features which may be of use.
 
 Overloading parameters
-______________________
+----------------------
 
 Useful for changing a setting for a onetime use. 
 Use `benchpro --setup` to confirm important default params from $BP_HOME/settings.ini
@@ -36,7 +37,7 @@ Example 3: run a collection of benchmarks across a range of hardware, allowing o
     benchpro -B ljmelt gromacs_stmv new_conus12km --overload layout.txt max_running_jobs=1
 
 Input list support
-__________________
+------------------
 
 Comma delimited lists of nodes, ranks and threads are supported which can be useful for automating scaling and optimization investigations.
 These lists can be specified in the config file, or via the overload feature detailed above.
@@ -61,7 +62,7 @@ From this example, the resulting set of runs would look like:
     Nodes= 16, ranks= 8, threads= 4 
 
 Local build and bench modes
-___________________________
+---------------------------
 
 Allows you to run the generated scripts in a shell on the local machine rather than  via the scheduler.
 Useful for evaluating hardware which is not integrated into the scheduler.
@@ -70,7 +71,7 @@ In settings.ini `build_mode` and `bench_mode` are responsible for selecting this
 You can opt to build locally and run via the scheduler, or vice a versa.
 
 Benchmarks with no application dependency
-_________________________________________
+-----------------------------------------
 
 Some benchmarks such as synthetics are microbenchmarks do require an application be compiled and module created.
 You are able to create a benchmark without any dependency to an application. 

@@ -1,10 +1,11 @@
+=============================
 Adding an Application Profile
------------------------------
+=============================
 
 BenchPRO requires two input files to build an application: a config file containing contextualization parameters, and a build template file which will be populated with these parameters and executed.
 
 Build config file
-_________________
+-----------------
 
 A full detailed list of config file fields are provided at the bottom of this README. A config file is seperated into the following sections:
  - `[general]` where information about the application is specified. `module_use` can be provided to add a nonstandard path to MODULEPATH. By default BenchPRO will attempt to match this config file with its corresponsing template file. You can overwrite this default filename by adding the `template` field to this section.
@@ -15,7 +16,7 @@ You can define as many additional parameters as needed for your application. Eg:
 This file must be located in `$BP_HOME/config/build`, preferably with the naming scheme `[label].cfg`.
 
 Build template file
-___________________
+-------------------
 
 This template file is used to gerenate a contextualized build script which will executed to compile the application.
 Variables are defined with `<<<[param]>>>` syntax and populated with the variables defined in the config file above.
@@ -29,9 +30,11 @@ You can define your own .lua module template, otherwise a generic one will be cr
 This file must be located in `$BP_HOME/templates/build`, with the naming scheme `[label].module`
 
 The application added above would be built with the following command:
-```
-benchpro --build [code]
-```
+
+.. code-block::
+
+    benchpro --build [code]
+
 Note: BenchPRO will attempt to match your application input to a unique config filename. The specificity of the input will depend on the number of similar config files.
 It may be helpful to build with `dry_run=True` initially to confirm the build script was generated as expected, before `--removing` and rebuilding with `dry_run=False` to compile.
 

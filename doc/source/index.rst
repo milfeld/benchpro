@@ -29,10 +29,10 @@ BenchPRO Basics
 .. toctree::
     :maxdepth: 2
        
-    01_user_guide
-    02_add_app
-    03_add_bench
-    04_testcases
+    010_user_guide
+    020_add_app
+    030_add_bench
+    040_testcases
 
 Installing BenchPRO
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -40,8 +40,9 @@ Installing BenchPRO
 .. toctree::
     :maxdepth: 1
 
-    05_site_install
-    06_user_setup
+    050_db_install
+    060_site_install
+    070_user_setup
 
 Advanced Topics 
 ^^^^^^^^^^^^^^^
@@ -49,6 +50,6 @@ Advanced Topics
 .. toctree::
     :maxdepth: 1
 
-    07_useful_features
-    08_reference
+    080_useful_features
+    090_reference
 
