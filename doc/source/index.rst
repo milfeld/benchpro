@@ -27,7 +27,7 @@ BenchPRO Basics
 ^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
        
     01_user_guide
     02_add_app

@@ -1,57 +1,50 @@
-BenchPro User Guide
+New User Guide
 -------------------
 
-This guide explains how to use BenchPRO to build one of the available applications, run a benchmark and capture the result. If you have not yet setup BenchPRO for your user account, refer to the :ref:`user_setup` page.
+This guide explains how to use BenchPRO to build one of the provided applications, run a benchmark and capture the result. If you have not yet setup BenchPRO for your user account, refer to the :ref:`user_setup` page.
 
 
 Build an Application
 ====================
 
-This section will walk you through building your first application with BenchPRO using an included application profile.
+This section will walk you through installing the LAMMPS application.
 
-1. List all available applications and benchmarks with:
+#. List all available applications and benchmark profiles with:
 .. code-block::
 
     benchpro -a
 
 #. Install LAMMPS:
-
 .. code-block::
 
     benchpro -b lammps
 
 #. List applications currently installed:
-
 .. code-block::
 
     benchpro -la
 
-You will see that LAMMPS is labelled as `DRY RUN` because `dry_run=True` in `$BP_HOME/settings.ini` by default. Therefore BenchPRO generated a LAMMPS compilation script but did not submit it to the scheduler to execute the build process. You can obtain more information about your LAMMPS deployment with:
-
+You will see that LAMMPS is labelled as :code:`DRY RUN` because :code:`dry_run=True` in :code:`$BP_HOME/settings.ini` by default. Therefore BenchPRO generated a LAMMPS compilation script but did not submit it to the scheduler to execute the build process. This is useful for testing and troubleshooting a task without impacting the system schedyler. You can obtain more information about your LAMMPS deployment with:
 .. code-block::
 
     benchpro -qa lammps
 
-You can examine the build script `build.batch` located in the `build_prefix` directory. Submit your LAMMPS compilation script to the scheduler manually, or
+You can examine the build script (by default named :code:`build.job`) located in the :code:`build_prefix` directory. You can now submit this LAMMPS compilation script to the scheduler manually, or
 #. Remove the dry_run build:
-
 .. code-block::
 
     benchpro -da lammps
 
 #. Overload the default 'dry_run' value and rebuild LAMMPS with:
-
 .. code-block::
+    benchpro -b lammps -o dry_run=False
 
-    benchpro -b lammps o dry_run=False
-
-#. Now check the details and status of your LAMMPS compilation job with:
-
+#. Check the details and status of your LAMMPS compilation again with:
 .. code-block::
 
     benchpro -qa lammps
 
-In this example, parameters in `$BP_HOME/config/build/lammps.cfg` were used to contextualize the build template `$BP_HOME/templates/build/lammps.template` and produce a job script. Parameters for the job, system architecture, compile time optimizations and a module file were automatically generated. You can load your LAMMPS module with `ml lammps`. For each application that is built, a 'build_report' is generated in order to preserve metadata about the application. This build report is referenced whenever the application is used to run a benchmark, and also when this application is captured to the database. You can manually examine this report in the application directory or by using the `--queryApp / -qa` flag.
+In this example, parameters in :code:`$BP_HOME/config/build/lammps.cfg` were used to contextualize the build template `$BP_HOME/templates/build/lammps.template` and produce a job script. Parameters for the job, system architecture, compile time optimizations and a module file were automatically generated. You can load your LAMMPS module with `ml lammps`. For each application that is built, a 'build_report' is generated in order to preserve metadata about the application. This build report is referenced whenever the application is used to run a benchmark, and also when this application is captured to the database. You can manually examine this report in the application directory or by using the `--queryApp / -qa` flag.
 
 
 Run a Benchmark

@@ -6,7 +6,7 @@ This page provides a reference to the various input and file structure provided 
 Input Arguments 
 _______________
 
-.. list-table
+.. list-table::
     :header-rows: 1
 
     *   - Argument
@@ -51,15 +51,26 @@ _______________
 
 Global settings are defined in the file `settings.ini`
 
-| Label             | Default                       | Description                                                                       |
-|-------------------|-------------------------------|-----------------------------------------------------------------------------------|
-| **[paths]**       |                               | -                                                                                 |
-| install_dir       |                               | Populated by installer                                                            |
-| build_dir         |                               | Populated by installer                                                            |
-| bench_dir         |                               | Populated by installer                                                            |
-| **[common]**      |                               | -                                                                                 |
-| dry_run           | True                          | Generates job script but does not submit it, useful for testing                   |
-| debug             | True                          | Prints additional nonessential messages                                           |
+.. list-table::
+       :header-rows: 1
+
+    *   - Label            
+        - Default                       
+        - Description                                                             
+    *   -  **[paths]**       
+    *   - install_dir                                  
+        - Populated by installer                                                            
+        - build_dir         
+    *   - Populated by installer                                                            
+        - bench_dir         
+        - Populated by installer                                                            
+    *   - **[common]**                                                          
+    *   - dry_run           
+        - True                          
+        - Generates job script but does not submit it, useful for testing                   
+    *   - debug             
+        - True                          
+        -Prints additional nonessential messages                                           |
 | timeout           | 5                             | Delay in seconds after warning and before file deletion event                     |
 | sl                | /                             | Filesystem separator                                                              |
 | system_env        | $TACC_SYSTEM                  | Environment variable contained system label (eg: stampede2)                       |
