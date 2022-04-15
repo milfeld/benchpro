@@ -80,7 +80,7 @@ Execute the LAMMPS Lennard-Jones benchmark with
 
 .. note::
 
-    BenchPRO will determine reasonable default values for the current system, including scheduler parameters, from "code:`$BP_HOME/config/system.cfg`. You can overload individual parameters using `--overload`, or specify another scheduler config file with the argument :code:`--sched [FILENAME]`.
+    BenchPRO will determine reasonable default values for the current system, including scheduler parameters, from :code:`$BP_HOME/config/system.cfg`. You can overload individual parameters using `--overload`, or specify another scheduler config file with the argument :code:`--sched [FILENAME]`.
 
 Check the benchmark report with
 
@@ -96,7 +96,7 @@ As this benchmark was the most recent BenchPRO job executed, you can use a usefu
 
 .. note::
 
-    In this example, parameters in `$BP_HOME/config/bench/lammps_ljmelt.cfg` were used to contetualize the template `$BP_HOME/templates/bench/lammps.template`. Much like the application build process, a bench report was generated to store metadata associated with this run. It is stored in the benchmark result directory and will be used in the next step to capture the result to the database.
+    In this example, parameters in :code:`$BP_HOME/config/bench/lammps_ljmelt.cfg` were used to contetualize the template :code:`$BP_HOME/templates/bench/lammps.template`. Much like the application build process, a bench report was generated to store metadata associated with this run. It is stored in the benchmark result directory and will be used in the next step to capture the result to the database.
 
 Capture Benchmark Result
 ------------------------
@@ -111,33 +111,35 @@ Once the LJMelt benchmark job has completed, capture results to the database wit
 
     benchpro --capture
 
+.. note::
+
+    Your LAMMPS application was recently compiled and not present in the database, therefore it is also captured to the database automatically.
+
 Display the status of all benchmark runs with
 
 .. code-block::
 
     benchpro --listResults
 
-Query your result in the database with
+Query the result database with
 
 .. code-block::
 
     benchpro --dbResult
 
-#. You can provide search criteria to narrow the results and export these results to a .csv file with:
+You can filter your query by providing search criteria,and export the results to a .csv file with
 
 .. code-block::
 
-    benchpro --dbResult username=$USER system=$TACC_SYSTEM submit_time=$(date +"%Y-%m-%d") --export
+    benchpro --dbResult username=$USER,system=$TACC_SYSTEM,submit_time=$(date +"%Y-%m-%d") --export
 
-Because your LAMMPS application was recently compiled and not present in the database, it was also added automatically.
-
-#. Query your application details using the [APPID] from above:
+You can also query your LAMMPS application entry in the database using the [APPID] from above
 
 .. code-block::
 
     benchpro --dbApp [APPID]
 
-#. Once you are satisfied the benchmark result and its associated files have been uploaded to the database, you can remove the local copy with:
+Once you are satisfied the benchmark result and its associated files have been uploaded to the database, you can remove the local files with
 
 .. code-block::
 
@@ -146,30 +148,30 @@ Because your LAMMPS application was recently compiled and not present in the dat
 Web frontend
 ------------
 
-The captured applications and benchmark results for the TACC site are available through a web portal here http://benchpro.tacc.utexas.edu/.
+The captured applications and benchmark results for the TACC site are available through a web portal at http://benchpro.tacc.utexas.edu/
 
 Useful commands
 ---------------
 
-You can print the default values of several important parameters with:
+You can print the default values of several important BenchPRO settings with
 
 .. code-block::
 
-    benchpro --setup
+    benchpro --defaults
 
-It may be useful to review your previous BenchPRO commands, do this with:
+It may be useful to review your previous commands. BenchPRO maintains its own history, accessible with
 
 .. code-block::
 
     benchpro --history
 
-You can remove tmp, log, csv, and history files by running:
+You can remove temp, log, csv, and history files by running
 
 .. code-block::
 
     benchpro --clean
 
-clean will NOT remove your all installed applications, to do that run:
+clean will NOT remove your installed applications, to do that run
 
 .. code-block::
 
