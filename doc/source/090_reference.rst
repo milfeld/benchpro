@@ -144,6 +144,9 @@ Global settings are defined in the file :code:`$BP_HOME/settings.ini`
 | **[suites]**      |                               |                                                                                   |
 | [Suite label]     | [list of apps/benchmarks]     | Several example included for 
 
+
+.. _app_config_fields:
+
 Application config files
 ------------------------
 
