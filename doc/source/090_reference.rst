@@ -12,41 +12,59 @@ Input Arguments
 .. list-table::
     :header-rows: 1
 
-    *   - Argument
+    *   - Long Option
+        - Short Option
         - Description                                                   
-    *   - --help
+    *   - \--help
+        - \-h
         - Print usage info.                                             
     *   - --validate
+        -
         - Confirm the installation is correctly configured.             
     *   - --clean                                               
+        -
         - Remove logs and other temp files left after an execption.
     *   - --avail                                               
+        -
         - Print the available application and benchmark profiles.       
     *   - --build [LABEL]                                       
+        -
         - Compile an available application.                             
     *   - --listApps                                            
+        -
         - Print a list of currently installed applications.             
     *   - --queryApp [LABEL]                                    
+        -
         - Print compilation information for an installed app.           
     *   - --delApp [LABEL]                                      
+        -
         - Remove application installation matching inpout.              
     *   - --bench [LABEL]                                       
+        -
         - Run a benchmark.                                              
     *   - --sched [LABEL]                                       
+        -
         - Use with '--build' or '--bench' to specify a custom scheduler config file instead of the system default. 
     *   - --listResults [all/running/pending/captured/failed]   
+        -
         - List all benchmark results in requested state.                
     *   - --queryResult [LABEL]                                 
+        -
         - Print config and result of a benchmark run.                   
     *   - --capture                                             
+        -
         - Validate and capture all pending results to the database.     
     *   - --dbResult [all/LIST]                                 
+        -
         - Display either all results from DB or results matching colon delimited search list, eg "username=mcawood:code=lammps". 
     *   - --dbApp [APPID]                                       
+        -
         - Display application details                                   
     *   - --delResult [all/captured/failed/LABEL]               
+        -
         - Remove local benchmark results matching input criteria.       
     *   - --overload [LIST]                                     
+        -
         - Replace options in settings.ini or any config file, acceptes a colon delimited list. 
 
 
