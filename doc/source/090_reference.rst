@@ -18,54 +18,54 @@ Input Arguments
     *   - \--help
         - \-h
         - Print usage info.                                             
-    *   - --validate
-        -
+    *   - \--validate
+        - \-V 
         - Confirm the installation is correctly configured.             
-    *   - --clean                                               
-        -
+    *   - \--clean                                               
+        - \-c
         - Remove logs and other temp files left after an execption.
-    *   - --avail                                               
-        -
+    *   - \--avail                                               
+        - \-a
         - Print the available application and benchmark profiles.       
-    *   - --build [LABEL]                                       
-        -
+    *   - \--build [LABEL]                                       
+        - \-b
         - Compile an available application.                             
-    *   - --listApps                                            
-        -
+    *   - \--listApps                                            
+        - \-la
         - Print a list of currently installed applications.             
-    *   - --queryApp [LABEL]                                    
-        -
+    *   - \--queryApp [LABEL]                                    
+        - \-qa
         - Print compilation information for an installed app.           
-    *   - --delApp [LABEL]                                      
-        -
+    *   - \--delApp [LABEL]                                      
+        - \-da
         - Remove application installation matching inpout.              
-    *   - --bench [LABEL]                                       
-        -
+    *   - \--bench [LABEL]                                       
+        - \-B 
         - Run a benchmark.                                              
     *   - --sched [LABEL]                                       
-        -
+        - 
         - Use with '--build' or '--bench' to specify a custom scheduler config file instead of the system default. 
-    *   - --listResults [all/running/pending/captured/failed]   
-        -
+    *   - \--listResults [all/pending/captured/failed]   
+        - \-lr
         - List all benchmark results in requested state.                
-    *   - --queryResult [LABEL]                                 
-        -
+    *   - \--queryResult [LABEL]                                 
+        - \-qr
         - Print config and result of a benchmark run.                   
-    *   - --capture                                             
-        -
+    *   - \--capture                                             
+        - \-C
         - Validate and capture all pending results to the database.     
-    *   - --dbResult [all/LIST]                                 
-        -
-        - Display either all results from DB or results matching colon delimited search list, eg "username=mcawood:code=lammps". 
-    *   - --dbApp [APPID]                                       
+    *   - \--dbResult [all/LIST]                                 
+        - 
+        - Display either all results from DB or results matching comma delimited search list, e.g. "username=mcawood,dataset=ljmelt". 
+    *   - \--dbApp [APPID]                                       
         -
         - Display application details                                   
-    *   - --delResult [all/captured/failed/LABEL]               
-        -
+    *   - \--delResult [all/captured/failed/LABEL]               
+        - \-dr
         - Remove local benchmark results matching input criteria.       
-    *   - --overload [LIST]                                     
-        -
-        - Replace options in settings.ini or any config file, acceptes a colon delimited list. 
+    *   - \--overload [LIST]                                     
+        - \-o
+        - Replace options in settings.ini or any config file, acceptes a comma delimited list, e.g. "dry_run=True,sync_staging=True". 
 
 
 Global settings
