@@ -223,19 +223,38 @@ These config files contain parameters used to populate the benchmark template sc
 Environment Variables
 ---------------------
 
++----------------------------+--------------------------------------------------+
+| Variable                   | Description                                      |
++============================+==================================================+
+| $BP_VERSION                | Version information.                             |
++----------------------------+--------------------------------------------------+
+| $BP_HOME                   | User file directory [Default= $HOME/benchpro].   |          
++----------------------------+--------------------------------------------------+
+| $BP_SITE                   | Site installation directroy.                     |
++----------------------------+--------------------------------------------------+
+| $BP_REPO                   | Local file repository directory.                 |
++----------------------------+--------------------------------------------------+
+| $BP_APPS                   | User application install root directory.         |
++----------------------------+--------------------------------------------------+               
+| $BP_RESULTS                | User benchmark results root directory.           |
++----------------------------+--------------------------------------------------+
+| $BP_COLLECTION             | Result collection black-hole directory.          |
++----------------------------+--------------------------------------------------+
 
 Directory structure
 -------------------
 
-| Directory         | Purpse                                                    |
-|-------------------|-----------------------------------------------------------|
-| $BP_APPS                 | Application build basedir.                                |
-| $BP_HOME/config          | config files containing template parameters.              |
-| $BP_HOME/log             | Build, bench and catpure log files.                       |
-| $BP_HOME/resources       | Contains useful content including modulefiles, hardware collection and result validation scripts.    |
-| $BP_RESULTS              | Benchmark result basedir.                                 |
-| $BP_HOME/templates       | job template files                                        |
-
++----------------------------+----------------------------------------------------------------------------------------------------+
+| Directory                  | Purpose                                                                                            |
++============================+====================================================================================================+
+| $BP_HOME/config            | config files containing template parameters.                                                       |
++----------------------------+----------------------------------------------------------------------------------------------------+
+| $BP_HOME/log               | Build, bench and catpure log files.                                                                |
++----------------------------+----------------------------------------------------------------------------------------------------+
+| $BP_HOME/resources         | Contains useful content including modulefiles, hardware collection and result validation scripts.  |
++----------------------------+----------------------------------------------------------------------------------------------------+
+| $BP_HOME/templates         | job template files                                                                                 |
++----------------------------+----------------------------------------------------------------------------------------------------+
 
 ===================
 Database Structures
@@ -244,5 +263,101 @@ Database Structures
 Application database
 --------------------
 
+
++--------------+--------------------------+-----------+----------+
+|   Column     |           Type           | Modifiers | Storage  |
++==============+==========================+===========+==========+
+| code         | character varying(50)    | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| version      | character varying(50)    | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| system       | character varying(50)    | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| compiler     | character varying(50)    | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| mpi          | character varying(50)    | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| modules      | character varying(200)   | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| opt_flags    | character varying(200)   |           | extended |              
++--------------+--------------------------+-----------+----------+
+| exe_file     | character varying(50)    | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| build_prefix | character varying(200)   | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| task_id      | character varying(50)    | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| app_id       | character varying(50)    | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| build_label  | character varying(50)    |           | extended |               
++--------------+--------------------------+-----------+----------+
+| module_use   | character varying(100)   |           | extended |              
++--------------+--------------------------+-----------+----------+
+| username     | character varying(50)    | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| exec_mode    | character varying(100)   | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| bin_dir      | character varying(50)    |           | extended |              
++--------------+--------------------------+-----------+----------+
+| script       | character varying(50)    |           | extended |              
++--------------+--------------------------+-----------+----------+
+| stderr       | character varying(50)    | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| stdout       | character varying(50)    | not null  | extended |              
++--------------+--------------------------+-----------+----------+
+| elapsed_time | integer                  |           | plain    |              
++--------------+--------------------------+-----------+----------+
+| end_time     | timestamp with time zone |           | plain    |              
++--------------+--------------------------+-----------+----------+
+| submit_time  | timestamp with time zone | not null  | plain    |              
++--------------+--------------------------+-----------+----------+
+
+
 Results database
 ----------------
+
++---------------+--------------------------+-----------+----------+
+|   Column      |           Type           | Modifiers | Storage  |
++===============+==========================+===========+==========+
+| username      | character varying(50)    | not null  | extended |              
++---------------+--------------------------+-----------+----------+
+| system        | character varying(50)    | not null  | extended |              
++---------------+--------------------------+-----------+----------+
+| submit_time   | timestamp with time zone | not null  | plain    |              
++---------------+--------------------------+-----------+----------+
+| task_id       | character varying(50)    | not null  | extended |              
++---------------+--------------------------+-----------+----------+
+| nodes         | integer                  | not null  | plain    |              
++---------------+--------------------------+-----------+----------+
+| ranks         | integer                  | not null  | plain    |              
++---------------+--------------------------+-----------+----------+
+| threads       | integer                  | not null  | plain    |              
++---------------+--------------------------+-----------+----------+
+| dataset       | character varying(50)    | not null  | extended |              
++---------------+--------------------------+-----------+----------+
+| result        | numeric(20,3)            | not null  | main     |              
++---------------+--------------------------+-----------+----------+
+| result_unit   | character varying(50)    | not null  | extended |              
++---------------+--------------------------+-----------+----------+
+| resource_path | character varying(100)   | not null  | extended |              
++---------------+--------------------------+-----------+----------+
+| nodelist      | character varying(1000)  | not null  | extended |              
++---------------+--------------------------+-----------+----------+
+| description   | character varying(100)   | not null  | extended |              
++---------------+--------------------------+-----------+----------+
+| elapsed_time  | integer                  |           | plain    |              
++---------------+--------------------------+-----------+----------+
+| end_time      | timestamp with time zone |           | plain    |              
++---------------+--------------------------+-----------+----------+
+| capture_time  | timestamp with time zone | not null  | plain    |              
++---------------+--------------------------+-----------+----------+
+| job_status    | character varying(100)   | not null  | extended |              
++---------------+--------------------------+-----------+----------+
+| app_id        | character varying(50)    | not null  | extended |              
++---------------+--------------------------+-----------+----------+
+| gpus          | integer                  | not null  | plain    |              
++---------------+--------------------------+-----------+----------+
+| exec_mode     | character varying(100)   | not null  | extended |              
++---------------+--------------------------+-----------+----------+
+
+
