@@ -1,20 +1,20 @@
+
+![Lmod Logo](https://github.com/TACC/BenchPRO/raw/main/resources/images/benchpro_black.png)
+
+
+[![Documentation Status](https://readthedocs.org/projects/benchpro/badge/?version=latest)](https://benchpro.readthedocs.io/en/latest/?badge=latest)
+
+
 # BenchPRO
-BenchPRO - Benchmark Performance & Reproducibility Orchestrator, is a framework to automate and standardize application compilation, benchmarking and result collection on large scale HPC systems. Current list of applications included with BenchPRO:
+BenchPRO - Benchmark Performance & Reproducibility Orchestrator, is a framework to automate and standardize application compilation, benchmarking and result collection on large scale HPC systems.
 
-| Applications               | Synthetic Benchmarks     |
-|----------------------------|--------------------------|
-| AMBER 20                   | HPL                      |
-| GROMACS 2020.2             | HPCG                     |
-| LAMMPS 3Mar20              | STREAM                   |
-| MILC 7.8.1                 | GPCNET                   |
-| NAMD 2.14                  |                          |
-| OpenFOAM v2012             |                          |
-| Quantum Espresso 6.5       |                          |
-| SWIFTsim 0.9.0             |                          |
-| WRF 4.2                    |                          |
-| SpecFEM3D Globe 7.0.2      |                          |
+## BenchPRO URLs
 
-These application profiles have been created with the expectation that corresponding source code and datasets are available in the local repository directory which is the case for TACC systems. New applications are being added.
+- Documentation    https://benchpro.readthedocs.io/en/latest/
+- Client Repo      https://github.com/TACC/benchpro
+- Site Repo        https://github.com/TACC/benchpro-site
+- Database Repo    https://github.com/TACC/benchpro-db
+
 
 ## Getting Started
 

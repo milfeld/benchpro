@@ -8,6 +8,9 @@ The BenchPRO site package should already be installed on most TACC systems. If i
 
 .. _benchpro-site: https://github.com/TACC/benchpro-site
 
+TACC system site installs
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 .. list-table::
     :header-rows: 1
 
