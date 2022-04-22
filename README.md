@@ -22,13 +22,12 @@ BenchPRO - Benchmark Performance & Reproducibility Orchestrator, is a framework 
 
 The BenchPRO site package should already be installed on most TACC systems. If it is not, contact mcawood@tacc.utexas.edu or install it from the [benchpro-package](https://github.com/TACC/benchpro-package) repository. Assuming the site package is available, you need to install a local copy of the configuration and template files to use BenchPRO.
 
-| System             | Module Path     |
-|--------------------|--------------------------|
+| System             | Module Path                              |
+|--------------------|------------------------------------------|
 | Frontera           | /scratch1/hpc_tools/benchpro/modulefiles |
-| Stampede2          | TBD                      |
-| Lonestar6          | TBD                      |
-| Longhorn           | TBD                      |
-
+| Stampede2          | /scratch/hpc_tools/benchpro/modulefiles  |
+| Lonestar6          | /scratch/projects/benchtool/modulefiles  |
+| Longhorn           | TBD                                      |
 
 1 Load the BenchPRO site package using the appropriate system path above, this module adds BenchPRO to PYTHONPATH and sets up your environment.
 ```
